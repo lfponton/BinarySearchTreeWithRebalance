@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BinaryTreeNodeTest
 {
   @Test
-  public void CreatingNodeWithNullElementThrowsIllegalArgumentException() {
+  public void creatingNodeWithNullElementThrowsIllegalArgumentException() {
     assertThrows(IllegalArgumentException.class,
         () -> new BinaryTreeNode<Integer>(null));
   }
 
   @Test
-  public void CreatingNodeWithElementAddsElementToNode()
+  public void creatingNodeWithElementAddsElementToNode()
   {
     Integer element = 1;
     BinaryTreeNode<Integer> node = new BinaryTreeNode<>(element);
@@ -18,7 +18,7 @@ public class BinaryTreeNodeTest
   }
 
   @Test
-  public void SettingElementAddsTheElementToTheNode()
+  public void settingElementAddsTheElementToTheNode()
   {
     Integer element = 10;
     BinaryTreeNode<Integer> node = new BinaryTreeNode<>(element);
@@ -28,7 +28,7 @@ public class BinaryTreeNodeTest
   }
 
   @Test
-  public void AddingLeftChildAddsLeftChildToNode() {
+  public void addingLeftChildAddsLeftChildToNode() {
     Integer element = 24;
     BinaryTreeNode<Integer> node = new BinaryTreeNode<>(element);
     Integer leftElement = 45;
@@ -38,7 +38,7 @@ public class BinaryTreeNodeTest
   }
 
   @Test
-  public void AddingRightChildAddsRightChildToNode() {
+  public void addingRightChildAddsRightChildToNode() {
     Integer element = 80;
     BinaryTreeNode<Integer> node = new BinaryTreeNode<>(element);
     Integer rightElement = 32;

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryTree<E>
 {
   BinaryTreeNode<E> root;
@@ -27,5 +30,25 @@ public class BinaryTree<E>
 
   public boolean isEmpty() {
     return size == 0;
+  }
+
+  public List<E> preOrder() {
+    List<E> elements = new ArrayList<>();
+    preOrderTraverse(elements, this.getRoot());
+    return elements;
+  }
+
+  private void preOrderTraverse(List<E> elements, BinaryTreeNode<E> node) {
+    if(node == null) {
+      return;
+    }
+    visitNode(elements, node);
+    preOrderTraverse(elements, node.getLeftChild());
+    preOrderTraverse(elements, node.getRightChild());
+  }
+
+  private void visitNode(List<E> elements, BinaryTreeNode<E> node)
+  {
+    elements.add(node.getElement());
   }
 }
