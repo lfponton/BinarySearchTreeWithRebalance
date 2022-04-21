@@ -63,6 +63,22 @@ public class BinaryTree<E>
     inOrderTraverse(elements, node.getRightChild());
   }
 
+  public List<E> postOrder() {
+    List<E> elements = new ArrayList<>();
+    postOrderTraverse(elements, this.root);
+    return elements;
+  }
+
+  private void postOrderTraverse(List<E> elements, BinaryTreeNode<E> node)
+  {
+    if(node == null) {
+      return;
+    }
+    postOrderTraverse(elements, node.getLeftChild());
+    postOrderTraverse(elements, node.getRightChild());
+    visitNode(elements, node);
+  }
+
   private void visitNode(List<E> elements, BinaryTreeNode<E> node)
   {
     elements.add(node.getElement());

@@ -93,4 +93,30 @@ public class BinaryTreeTest
     }
     assertArrayEquals(inOrderedList.toArray(), tree.inOrder().toArray());
   }
+
+  @Test public void postOrderTraverseReturnsEmptyArrayIfTreeIsEmpty() {
+    assertTrue(tree.postOrder().isEmpty());
+  }
+
+  @Test
+  public void postOrderTraversalReturnsPreOrderedArrayList()
+  {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(5);
+    BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(3);
+    BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(4);
+    BinaryTreeNode<Integer> leftLeftChild = new BinaryTreeNode<>(1);
+    BinaryTreeNode<Integer> rightLeftChild = new BinaryTreeNode<>(2);
+    tree.setRoot(root);
+    root.addLeftChild(leftChild);
+    root.addRightChild(rightChild);
+    leftChild.addLeftChild(leftLeftChild);
+    leftChild.addRightChild(rightLeftChild);
+
+    List<Integer> postOrderedList = new ArrayList<>();
+    for (int i = 1; i < 6; i++)
+    {
+      postOrderedList.add(i);
+    }
+    assertArrayEquals(postOrderedList.toArray(), tree.postOrder().toArray());
+  }
 }
