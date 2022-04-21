@@ -34,7 +34,7 @@ public class BinaryTree<E>
 
   public List<E> preOrder() {
     List<E> elements = new ArrayList<>();
-    preOrderTraverse(elements, this.getRoot());
+    preOrderTraverse(elements, this.root);
     return elements;
   }
 
@@ -45,6 +45,22 @@ public class BinaryTree<E>
     visitNode(elements, node);
     preOrderTraverse(elements, node.getLeftChild());
     preOrderTraverse(elements, node.getRightChild());
+  }
+
+  public List<E> inOrder() {
+    List<E> elements = new ArrayList<>();
+    inOrderTraverse(elements, this.root);
+    return elements;
+  }
+
+  private void inOrderTraverse(List<E> elements, BinaryTreeNode<E> node)
+  {
+    if(node == null) {
+      return;
+    }
+    inOrderTraverse(elements, node.getLeftChild());
+    visitNode(elements, node);
+    inOrderTraverse(elements, node.getRightChild());
   }
 
   private void visitNode(List<E> elements, BinaryTreeNode<E> node)
