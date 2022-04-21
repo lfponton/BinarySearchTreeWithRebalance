@@ -119,4 +119,84 @@ public class BinaryTreeTest
     }
     assertArrayEquals(postOrderedList.toArray(), tree.postOrder().toArray());
   }
+
+  @Test
+  public void heightOfEmptyTreeIsMinusOne() {
+    assertEquals(-1, tree.height(tree));
+  }
+
+  @Test
+  public void heightOfTreeWithOnlyRootIsZero() {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(1);
+    tree.setRoot(root);
+    assertEquals(0, tree.height(tree));
+  }
+
+  @Test void heightOfTreeWithManyNodesGivesRightHeight()
+  {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(5);
+    BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(3);
+    BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(4);
+    BinaryTreeNode<Integer> leftLeftChild = new BinaryTreeNode<>(1);
+    BinaryTreeNode<Integer> rightLeftChild = new BinaryTreeNode<>(2);
+    tree.setRoot(root);
+    root.addLeftChild(leftChild);
+    root.addRightChild(rightChild);
+    leftChild.addLeftChild(leftLeftChild);
+    leftChild.addRightChild(rightLeftChild);
+    assertEquals(2, tree.height(tree));
+  }
+
+  @Test void heightOfTreeWithMoreLeftNodesGivesRightHeight()
+  {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(5);
+    BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(3);
+    BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(4);
+    BinaryTreeNode<Integer> leftLeftChild = new BinaryTreeNode<>(1);
+    BinaryTreeNode<Integer> rightLeftChild = new BinaryTreeNode<>(2);
+    BinaryTreeNode<Integer> leftLeftLeftChild = new BinaryTreeNode<>(6);
+    tree.setRoot(root);
+    root.addLeftChild(leftChild);
+    root.addRightChild(rightChild);
+    leftChild.addLeftChild(leftLeftChild);
+    leftChild.addRightChild(rightLeftChild);
+    leftLeftChild.addLeftChild(leftLeftLeftChild);
+    assertEquals(3, tree.height(tree));
+  }
+
+  @Test void heightOfTreeWithMoreRightNodesGivesRightHeight()
+  {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(5);
+    BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(3);
+    BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(4);
+    BinaryTreeNode<Integer> leftLeftChild = new BinaryTreeNode<>(1);
+    BinaryTreeNode<Integer> rightLeftChild = new BinaryTreeNode<>(2);
+    BinaryTreeNode<Integer> rightRightChild = new BinaryTreeNode<>(7);
+    BinaryTreeNode<Integer> rightRightRightChild = new BinaryTreeNode<>(6);
+    tree.setRoot(root);
+    root.addLeftChild(leftChild);
+    root.addRightChild(rightChild);
+    leftChild.addLeftChild(leftLeftChild);
+    leftChild.addRightChild(rightLeftChild);
+    rightChild.addRightChild(rightRightChild);
+    rightRightChild.addRightChild(rightRightRightChild);
+    assertEquals(3, tree.height(tree));
+  }
+
+  @Test void heightOfTreeWithMoreLeftRightNodesGivesRightHeight()
+  {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(5);
+    BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(3);
+    BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(4);
+    BinaryTreeNode<Integer> leftLeftChild = new BinaryTreeNode<>(1);
+    BinaryTreeNode<Integer> rightLeftChild = new BinaryTreeNode<>(2);
+    BinaryTreeNode<Integer> rightRightLeftChild = new BinaryTreeNode<>(6);
+    tree.setRoot(root);
+    root.addLeftChild(leftChild);
+    root.addRightChild(rightChild);
+    leftChild.addLeftChild(leftLeftChild);
+    leftChild.addRightChild(rightLeftChild);
+    rightLeftChild.addRightChild(rightRightLeftChild);
+    assertEquals(3, tree.height(tree));
+  }
 }

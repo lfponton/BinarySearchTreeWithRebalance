@@ -83,4 +83,27 @@ public class BinaryTree<E>
   {
     elements.add(node.getElement());
   }
+
+  public int height(BinaryTree<E> tree) {
+    if(tree.getRoot() == null) {
+      return -1;
+    }
+    return heightCalculator(tree.getRoot(), 0);
+  }
+
+  private int heightCalculator(BinaryTreeNode<E> node, int height)
+  {
+    int leftHeight = height;
+    int rightHeight = height;
+
+    if(node.getLeftChild() != null) {
+      leftHeight = heightCalculator(node.getLeftChild(), height + 1);
+    }
+
+    if(node.getRightChild() != null) {
+      rightHeight = heightCalculator(node.getRightChild(), height + 1);
+    }
+
+    return Math.max(leftHeight, rightHeight);
+  }
 }
