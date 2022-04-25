@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BinaryTree<E>
 {
@@ -106,4 +108,25 @@ public class BinaryTree<E>
 
     return Math.max(leftHeight, rightHeight);
   }
+
+  public List<E> levelOrder()
+  {
+    List<E> elements = new ArrayList<>();
+    Queue<BinaryTreeNode<E>> queue = new LinkedList<>();
+    queue.add(this.getRoot());
+    while (!queue.isEmpty()) {
+      BinaryTreeNode<E> node = queue.poll();
+      visitNode(elements, node);
+      if (node.getLeftChild() != null)
+      {
+        queue.add(node.getLeftChild());
+      }
+      if (node.getRightChild() != null)
+      {
+        queue.add(node.getRightChild());
+      }
+    }
+    return elements;
+  }
+
 }

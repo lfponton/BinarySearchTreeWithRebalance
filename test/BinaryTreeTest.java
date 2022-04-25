@@ -199,4 +199,30 @@ public class BinaryTreeTest
     rightLeftChild.addRightChild(rightRightLeftChild);
     assertEquals(3, tree.height(tree));
   }
+
+  @Test public void levelOrderTraverseReturnsEmptyArrayIfTreeIsEmpty() {
+    assertTrue(tree.levelOrder().isEmpty());
+  }
+
+  @Test
+  public void levelOrderTraversalReturnsPreOrderedArrayList()
+  {
+    BinaryTreeNode<Integer> root = new BinaryTreeNode<>(1);
+    BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(2);
+    BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(3);
+    BinaryTreeNode<Integer> leftLeftChild = new BinaryTreeNode<>(4);
+    BinaryTreeNode<Integer> rightLeftChild = new BinaryTreeNode<>(5);
+    tree.setRoot(root);
+    root.addLeftChild(leftChild);
+    root.addRightChild(rightChild);
+    leftChild.addLeftChild(leftLeftChild);
+    leftChild.addRightChild(rightLeftChild);
+
+    List<Integer> levelOrderedList = new ArrayList<>();
+    for (int i = 1; i < 6; i++)
+    {
+      levelOrderedList.add(i);
+    }
+    assertArrayEquals(levelOrderedList.toArray(), tree.levelOrder().toArray());
+  }
 }
