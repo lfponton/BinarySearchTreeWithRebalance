@@ -122,14 +122,14 @@ public class BinaryTreeTest
 
   @Test
   public void heightOfEmptyTreeIsMinusOne() {
-    assertEquals(-1, tree.height(tree));
+    assertEquals(-1, tree.height());
   }
 
   @Test
   public void heightOfTreeWithOnlyRootIsZero() {
     BinaryTreeNode<Integer> root = new BinaryTreeNode<>(1);
     tree.setRoot(root);
-    assertEquals(0, tree.height(tree));
+    assertEquals(0, tree.height());
   }
 
   @Test void heightOfTreeWithManyNodesGivesRightHeight()
@@ -144,7 +144,7 @@ public class BinaryTreeTest
     root.addRightChild(rightChild);
     leftChild.addLeftChild(leftLeftChild);
     leftChild.addRightChild(rightLeftChild);
-    assertEquals(2, tree.height(tree));
+    assertEquals(2, tree.height());
   }
 
   @Test void heightOfTreeWithMoreLeftNodesGivesRightHeight()
@@ -161,7 +161,7 @@ public class BinaryTreeTest
     leftChild.addLeftChild(leftLeftChild);
     leftChild.addRightChild(rightLeftChild);
     leftLeftChild.addLeftChild(leftLeftLeftChild);
-    assertEquals(3, tree.height(tree));
+    assertEquals(3, tree.height());
   }
 
   @Test void heightOfTreeWithMoreRightNodesGivesRightHeight()
@@ -180,7 +180,7 @@ public class BinaryTreeTest
     leftChild.addRightChild(rightLeftChild);
     rightChild.addRightChild(rightRightChild);
     rightRightChild.addRightChild(rightRightRightChild);
-    assertEquals(3, tree.height(tree));
+    assertEquals(3, tree.height());
   }
 
   @Test void heightOfTreeWithMoreLeftRightNodesGivesRightHeight()
@@ -197,7 +197,7 @@ public class BinaryTreeTest
     leftChild.addLeftChild(leftLeftChild);
     leftChild.addRightChild(rightLeftChild);
     rightLeftChild.addRightChild(rightRightLeftChild);
-    assertEquals(3, tree.height(tree));
+    assertEquals(3, tree.height());
   }
 
   @Test public void levelOrderTraverseReturnsEmptyArrayIfTreeIsEmpty() {

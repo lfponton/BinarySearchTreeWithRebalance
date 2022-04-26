@@ -21,11 +21,17 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
 
   public void addLeftChild(BinarySearchTreeNode<E> node)
   {
-    if (node == null || node.getElement().compareTo(getElement()) == 0)
+    if (node == null) {
+      return;
+    }
+
+    int compareResult = node.getElement().compareTo(getElement());
+
+    if (compareResult == 0)
     {
       return;
     }
-    if (node.getElement().compareTo(getElement()) < 0)
+    if (compareResult < 0)
     {
       if (getLeftChild() == null)
       {
@@ -38,11 +44,17 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
 
   public void addRightChild(BinarySearchTreeNode<E> node)
   {
-    if (node == null || node.getElement().compareTo(getElement()) == 0)
+    if (node == null) {
+      return;
+    }
+
+    int compareResult = node.getElement().compareTo(getElement());
+
+    if (compareResult == 0)
     {
       return;
     }
-    if (node.getElement().compareTo(getElement()) > 0)
+    if (compareResult > 0)
     {
       if (getRightChild() == null)
       {

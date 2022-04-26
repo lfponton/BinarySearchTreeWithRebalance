@@ -86,11 +86,11 @@ public class BinaryTree<E>
     elements.add(node.getElement());
   }
 
-  public int height(BinaryTree<E> tree) {
-    if(tree.getRoot() == null) {
+  public int height() {
+    if(root == null) {
       return -1;
     }
-    return heightCalculator(tree.getRoot(), 0);
+    return heightCalculator(root, 0);
   }
 
   private int heightCalculator(BinaryTreeNode<E> node, int height)
@@ -112,6 +112,9 @@ public class BinaryTree<E>
   public List<E> levelOrder()
   {
     List<E> elements = new ArrayList<>();
+    if(root == null) {
+      return elements;
+    }
     Queue<BinaryTreeNode<E>> queue = new LinkedList<>();
     queue.add(this.getRoot());
     while (!queue.isEmpty()) {
