@@ -59,12 +59,48 @@ public class BinarySearchTreeTest
     tree.insert(4);
 
     List<Integer> inOrderedList = new ArrayList<>();
-    inOrderedList.add(3);
-    inOrderedList.add(2);
     inOrderedList.add(1);
+    inOrderedList.add(2);
+    inOrderedList.add(3);
     inOrderedList.add(4);
     inOrderedList.add(5);
 
     assertArrayEquals(inOrderedList.toArray(), tree.inOrder().toArray());
   }
+
+  @Test
+  public void insertingInEmptyTreeReturnsTrue() {
+    assertTrue(tree.insert(2));
+  }
+
+  @Test
+  public void insertingNullElementReturnsFalse() {
+    assertFalse(tree.insert(null));
+  }
+
+  @Test void checkingIfATreeContainsAndElementThatDoestNotContainReturnsFalse() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    tree.insert(2);
+    tree.insert(5);
+    tree.insert(1);
+    tree.insert(4);
+    assertFalse(tree.containsElement(10));
+  }
+  @Test void insertingElementAlreadyContainedInTreeReturnsFalse() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    tree.insert(2);
+    assertFalse(tree.insert(2));
+  }
+
+  @Test void insertingElementIntoTreeReturnsTrue() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    assertTrue(tree.insert(12));
+  }
+
+
+
+
 }

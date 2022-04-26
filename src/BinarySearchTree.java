@@ -25,44 +25,39 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E>
     return root;
   }
 
-  // TODO: Finish
-  public boolean insert(E element)
-  {
+  public boolean insert(E element) {
     if (element == null)
     {
       return false;
     }
-
-    BinarySearchTreeNode<E> node = new BinarySearchTreeNode<>(element);
-
-    if (root == null)
-    {
+    else if (containsElement(element)){
       return false;
     }
-    BinarySearchTreeNode<E> currentNode = new BinarySearchTreeNode<>(element);
+    else {
+    root = insert(root, element);
+    return true;
+    }
+  }
+
+  private BinarySearchTreeNode<E> insert(BinarySearchTreeNode<E> currentNode, E element)
+  {
+    if (currentNode == null)
+    {
+      return new BinarySearchTreeNode<>(element);
+    }
 
     int compareResult = element.compareTo(currentNode.getElement());
-    while (currentNode != null)
-    {
 
-      if (compareResult < 0)
-      {
-        root.addLeftChild(node);
-        size++;
-        return true;
-      }
-      else if (compareResult > 0)
-      {
-        root.addRightChild(node);
-        size++;
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+    if (compareResult < 0) {
+      currentNode.addLeftChild(insert(currentNode.getLeftChild(), element));
     }
-    return false;
+    else if (compareResult > 0) {
+      currentNode.addRightChild(insert(currentNode.getRightChild(), element));
+    }
+    else {
+      return currentNode;
+    }
+    return currentNode;
   }
 
   public boolean containsElement(E element)
@@ -97,6 +92,13 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E>
   public static void main(String[] args)
   {
     BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-    tree.isEmpty();
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    tree.insert(2);
+    tree.insert(5);
+    tree.insert(1);
+    tree.insert(4);
+
+
   }
 }
