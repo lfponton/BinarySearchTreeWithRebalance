@@ -89,6 +89,27 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E>
     elements.add(node.getElement());
   }
 
+  public BinarySearchTreeNode<E> findMin() {
+    return findMin(root);
+  }
+
+  private BinarySearchTreeNode<E> findMin(BinarySearchTreeNode<E> node) {
+    if (node == null)
+      return null;
+    return node.getLeftChild() == null ? node : findMin(node.getLeftChild());
+  }
+
+  public BinarySearchTreeNode<E> findMax() {
+    return finMax(root);
+  }
+
+  private BinarySearchTreeNode<E> finMax(BinarySearchTreeNode<E> node)
+  {
+    if (node == null)
+      return null;
+    return node.getRightChild() == null ? node : finMax(node.getRightChild());
+  }
+
   public static void main(String[] args)
   {
     BinarySearchTree<Integer> tree = new BinarySearchTree<>();

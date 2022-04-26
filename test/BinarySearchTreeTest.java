@@ -78,7 +78,8 @@ public class BinarySearchTreeTest
     assertFalse(tree.insert(null));
   }
 
-  @Test void checkingIfATreeContainsAndElementThatDoestNotContainReturnsFalse() {
+  @Test
+  public void checkingIfATreeContainsAndElementThatDoestNotContainReturnsFalse() {
     BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
     tree.setRoot(root);
     tree.insert(2);
@@ -87,20 +88,49 @@ public class BinarySearchTreeTest
     tree.insert(4);
     assertFalse(tree.containsElement(10));
   }
-  @Test void insertingElementAlreadyContainedInTreeReturnsFalse() {
+  @Test
+  public void insertingElementAlreadyContainedInTreeReturnsFalse() {
     BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
     tree.setRoot(root);
     tree.insert(2);
     assertFalse(tree.insert(2));
   }
 
-  @Test void insertingElementIntoTreeReturnsTrue() {
+  @Test
+  public void insertingElementIntoTreeReturnsTrue() {
     BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
     tree.setRoot(root);
     assertTrue(tree.insert(12));
   }
 
+  @Test
+  public void findingMinInEmptyTreeReturnsNull() {
+    assertNull(tree.findMin());
+  }
+  @Test
+  public void findingMinReturnsNodeWithSmallestElement() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    tree.insert(2);
+    tree.insert(5);
+    tree.insert(1);
+    tree.insert(4);
+    assertEquals(1, tree.findMin().getElement());
+  }
 
-
+  @Test
+  public void findingMaxInEmptyTreeReturnsNull() {
+    assertNull(tree.findMax());
+  }
+  @Test
+  public void findingMaxReturnsNodeWithLargestElement() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    tree.insert(2);
+    tree.insert(5);
+    tree.insert(1);
+    tree.insert(4);
+    assertEquals(5, tree.findMax().getElement());
+  }
 
 }
