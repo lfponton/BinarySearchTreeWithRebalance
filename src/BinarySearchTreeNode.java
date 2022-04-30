@@ -3,6 +3,22 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
 {
   private BinarySearchTreeNode<E> leftChild;
   private BinarySearchTreeNode<E> rightChild;
+  private int height;
+
+  public void setHeight(int height)
+  {
+    this.height = height;
+  }
+
+  public void setLeftChild(BinarySearchTreeNode<E> leftChild)
+  {
+    this.leftChild = leftChild;
+  }
+
+  public void setRightChild(BinarySearchTreeNode<E> rightChild)
+  {
+    this.rightChild = rightChild;
+  }
 
   public BinarySearchTreeNode(E element)
   {
@@ -22,6 +38,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
   public void addLeftChild(BinarySearchTreeNode<E> node)
   {
     if (node == null) {
+      leftChild = null;
       return;
     }
 
@@ -45,6 +62,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
   public void addRightChild(BinarySearchTreeNode<E> node)
   {
     if (node == null) {
+      rightChild = null;
       return;
     }
 

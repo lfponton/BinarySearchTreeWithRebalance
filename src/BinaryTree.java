@@ -93,12 +93,16 @@ public class BinaryTree<E>
     return heightCalculator(root, 0);
   }
 
-  private int heightCalculator(BinaryTreeNode<E> node, int height)
+  public int heightCalculator(BinaryTreeNode<E> node, int height)
   {
+    if (node == null)
+    {
+      return height;
+    }
     int leftHeight = height;
     int rightHeight = height;
 
-    if(node.getLeftChild() != null) {
+    if (node.getLeftChild() != null) {
       leftHeight = heightCalculator(node.getLeftChild(), height + 1);
     }
 

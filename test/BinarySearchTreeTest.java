@@ -122,6 +122,7 @@ public class BinarySearchTreeTest
   public void findingMaxInEmptyTreeReturnsNull() {
     assertNull(tree.findMax());
   }
+
   @Test
   public void findingMaxReturnsNodeWithLargestElement() {
     BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
@@ -131,6 +132,75 @@ public class BinarySearchTreeTest
     tree.insert(1);
     tree.insert(4);
     assertEquals(5, tree.findMax().getElement());
+  }
+
+  @Test
+  public void removingNullElementReturnsFalse() {
+    assertFalse(tree.removeElement(null));
+  }
+  @Test
+  public void removingElementNotInTheTreeReturnsFalse() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(3);
+    tree.setRoot(root);
+    tree.insert(1);
+    assertFalse(tree.removeElement(2));
+  }
+  @Test
+  public void removingElementRemovesElementFromTree() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(6);
+    tree.setRoot(root);
+    tree.insert(4);
+    tree.insert(8);
+    tree.insert(3);
+    tree.insert(5);
+    tree.insert(7);
+    tree.insert(9);
+    assertTrue(tree.containsElement(9));
+    tree.removeElement(9);
+    assertFalse(tree.containsElement(9));
+  }
+
+  @Test
+  public void removingElementWithChildrenRemovesElementAndReplacesWithRightChild() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(6);
+    tree.setRoot(root);
+    tree.insert(4);
+    tree.insert(8);
+    tree.insert(3);
+    tree.insert(5);
+    tree.insert(7);
+    tree.insert(9);
+    assertTrue(tree.containsElement(8));
+    tree.removeElement(8);
+    assertFalse(tree.containsElement(8));
+  }
+
+  @Test
+  public void removingElementWithOneChildRemovesElementAndReplacesWithChild() {
+    BinarySearchTreeNode<Integer> root = new BinarySearchTreeNode<>(6);
+    tree.setRoot(root);
+    tree.insert(4);
+    tree.insert(8);
+    tree.insert(3);
+    tree.insert(5);
+    tree.insert(7);
+    assertTrue(tree.containsElement(8));
+    tree.removeElement(8);
+    assertFalse(tree.containsElement(8));
+  }
+
+  @Test
+  public void reBalancingUnbalancedTreeBalancesTree() {
+    BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+    tree.setRoot(new BinarySearchTreeNode<Integer>(6));
+    tree.getRoot().setLeftChild(new BinarySearchTreeNode<Integer>(1));
+    tree.getRoot().setRightChild(new BinarySearchTreeNode<Integer>(7));
+    tree.getRoot().getRightChild().setRightChild(new BinarySearchTreeNode<Integer>(8));
+    tree.getRoot().getRightChild().setLeftChild(new BinarySearchTreeNode<Integer>(2));
+    tree.getRoot().getRightChild().getRightChild().setRightChild(new BinarySearchTreeNode<Integer>(9));
+    tree.getRoot().getRightChild().getRightChild().setLeftChild(new BinarySearchTreeNode<Integer>(3));
+    tree.reBalance();
+    assertEquals(7, tree.getRoot().getElement());
   }
 
 }
